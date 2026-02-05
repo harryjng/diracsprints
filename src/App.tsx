@@ -10,21 +10,31 @@ const initialSteps = [
 
 export default function App() {
   const [steps, setSteps] = useState(initialSteps);
-  // Requirement: No step expanded on load (0 means none are active)
+  //initializing steps as all the steps
   const [activeId, setActiveId] = useState(0);
+  //intializing active id as index 0
 
   const completeStep = (id: number) => {
     const nextSteps = steps.map((step) => 
       step.id === id ? { ...step, status: 'completed' } : step
     );
+    //maps over the steps array and finds the step with the id as the one passed in. then that step's status is changed 
+    //and this new array in memory is assigned to nextsteps
+
     setSteps(nextSteps);
-    // Auto-advance to next step if it exists
+    //then we set the steps array to the one we modified.
+
     if (id < steps.length) {
       setActiveId(id + 1);
+      //expand the next step if not in the last step
     } else {
-      setActiveId(0); // Close all after final step
+      setActiveId(0); 
+      // Close all after final step
     }
+    //this is for expanding the next step by setting the active id once completed is clicked.
+    
   };
+  //function for completing a step. takes in id as the input
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-4">
