@@ -45,12 +45,15 @@ export default function app1() {
         <div>
             <h1>drone instructions</h1>
             {steps.map(step =>
-                <div key={step.id} className="border p-4 mb-2">
+                <div key={step.id} className="border p-4 mb-2" onClick={() => setActiveId(step.id)}>
                     <p>{step.id}</p>
                     <p>{step.title}</p>
+                    
                 </div>
             )}
+            
         </div>
+
     )
 
     //const completestep function
