@@ -44,16 +44,26 @@ export default function app1() {
     return (
         <div>
             <h1>drone instructions</h1>
-            {steps.map(step =>
-                <div key={step.id} className="border p-4 mb-2" onClick={() => setActiveId(step.id)}>
-                    <p>{step.id}</p>
-                    <p>{step.title}</p>
-                    
-                </div>
-            )}
-            
-        </div>
+            {steps.map(step => {
+                const active = step.id === activeId
+                return (
+                    <div key={step.id} className="border p-4 mb-2" onClick={() => setActiveId(step.id)}>
+                        <div className='flex justify-between'>
+                            <p>{step.title}</p>
+                            <p>{step.status}</p>
+                        </div>
 
+                        {active && (
+                            <p className='flex justify-center'>{step.instruction}</p>
+                            
+                )
+                        }
+                    </div>
+
+                )
+            }
+            )}
+        </div>
     )
 
     //const completestep function
